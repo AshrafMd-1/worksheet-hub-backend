@@ -1,13 +1,24 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+from src.utils import bulk_rolls,search_bulk_worksheet
 
 app = FastAPI()
 
 
+class BulkRequest(BaseModel):
+    roll_f: str
+    roll_l: str
+    sem: int
+    sub: str
+    week: int
+
+
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"status": "Working"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+@app.post("/bulk")
+async def bulk(request: BulkRequest):
+    return search_bulk_worksheet(bulk_rolls(request.roll_f, request.roll_l), request.sem, request.sub, request.week)
