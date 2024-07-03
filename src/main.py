@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from src.utils import bulk_rolls,search_bulk_worksheet
+from utils import bulk_rolls,search_bulk_worksheet
 
 app = FastAPI()
 
