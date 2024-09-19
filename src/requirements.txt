@@ -1,4 +1,4 @@
-fastapi~=0.111.0
+flask
 requests~=2.32.3
 uvicorn
 pydantic~=2.7.4
